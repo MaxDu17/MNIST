@@ -35,7 +35,7 @@ def main(_):
   with tf.Session() as sess:
     # Import data
     mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
-    saver = tf.train.Saver()
+    
     # Create the model
     x = tf.placeholder(tf.float32, [None, 784])
     W = tf.Variable(tf.zeros([784, 10]))
@@ -64,7 +64,7 @@ def main(_):
     for _ in range(1000):
       batch_xs, batch_ys = mnist.train.next_batch(100)
       sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
-      
+    saver = tf.train.Saver()  
     saver.save(sess, "/tmp/MNIST.ckpt")
     # Test trained model
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
