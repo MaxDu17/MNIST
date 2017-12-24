@@ -21,7 +21,7 @@ logits = tf.matmul(X,w) + b # multiplies X by w, making a 1 X 10 vector, and add
 entropy = tf.nn.softmax_cross_entropy_with_logits(logits = logits,labels = Y)
 loss = tf.reduce_mean(entropy)#reduces the examples down to one value
 
-tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(loss)#this is the optimize function
+optimizer = tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(loss)#this is the optimize function
 
 init = tf.global_variables_initializer()
 
