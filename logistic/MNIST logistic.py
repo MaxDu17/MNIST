@@ -23,7 +23,7 @@ loss = tf.reduce_mean(entropy)#reduces the examples down to one value
 
 tf.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(loss)#this is the optimize function
 
-init - tf.global_variables_initializer()
+init = tf.global_variables_initializer()
 
 with tf.Session() as sess:
     sess.run(init)
