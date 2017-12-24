@@ -30,7 +30,7 @@ with tf.Session() as sess:
     number_batches = int(MNIST.train.num_examples/batch_size)
     for i in range(epochs):
         for j in range(number_batches):
-            X_batch, Y_batch = MNIST.train.next_batch(batch_size)
+            Y_batch, X_batch = MNIST.train.next_batch(batch_size)
             print(Y_batch)
             print("divide")
             print(X_batch)
