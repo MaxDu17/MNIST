@@ -31,7 +31,9 @@ with tf.Session() as sess:
     for i in range(epochs):
         for j in range(number_batches):
             X_batch, Y_batch = MNIST.train.next_batch(batch_size)
+            print(Y_batch)
             sess.run([optimizer,loss], feed_dict={X: X_batch, Y:Y_batch})
+            print("running")
 
     writer = tf.summary.FileWriter('tmp/MNISTlogistic', sess.graph)
     writer.close()  # you need to close the writer in order to write down the data
