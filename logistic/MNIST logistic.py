@@ -30,10 +30,10 @@ with tf.Session() as sess:
     number_batches = int(MNIST.train.num_examples/batch_size)
     for i in range(epochs):
         for j in range(number_batches):
-            Y_batch, X_batch = MNIST.train.next_batch(batch_size)
-            print(Y_batch)
+            batch= MNIST.train.next_batch(batch_size)
+            print(batch[0])
             print("divide")
-            print(X_batch)
+            print(batch[1])
             sess.run([optimizer,loss], feed_dict={X: X_batch, Y:Y_batch})
             print("running")
 
