@@ -32,6 +32,8 @@ with tf.Session() as sess:
         for j in range(number_batches):
             X_batch, Y_batch = MNIST.train.next_batch(batch_size)
             print(Y_batch)
+            print("divide")
+            print(X_batch)
             sess.run([optimizer,loss], feed_dict={X: X_batch, Y:Y_batch})
             print("running")
 
