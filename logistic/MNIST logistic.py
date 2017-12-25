@@ -4,7 +4,7 @@ import numpy as np
 import time
 
 
-MNIST = input_data.read_data_sets("/tmp/tensorflow/mnist/input_data")
+MNIST = input_data.read_data_sets(''/tmp/tensorflow/mnist/input_data'')
 
 learning_rate = 0.01
 batch_size = 128
@@ -30,11 +30,8 @@ with tf.Session() as sess:
     number_batches = int(MNIST.train.num_examples/batch_size)
     for i in range(epochs):
         for j in range(number_batches):
-            batch= MNIST.train.next_batch(batch_size)
-            print(batch[0])
-            print("divide")
-            print(batch[1])
-            sess.run([optimizer,loss], feed_dict={X: batch[0], Y:batch[1]})
+            batch_xs, batch_ys = mnist.train.next_batch(100)
+            sess.run([optimizer,loss], feed_dict={X: batch_xs, Y:batch_ys})
             print("running")
 
     writer = tf.summary.FileWriter('tmp/MNISTlogistic', sess.graph)
