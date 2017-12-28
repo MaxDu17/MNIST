@@ -10,7 +10,7 @@ learning_rate = 0.01
 batch_size = 128
 epochs = 25
 
-X = tf.placeholder(tf.float32, [None, 784], name = "image")#this creates a matrix with batch_size columns, with 784 (28 X 28 pixels)
+X = tf.placeholder(tf.float32, [batch_size, 784], name = "image")#this creates a matrix with batch_size columns, with 784 (28 X 28 pixels)
 Y = tf.placeholder(tf.float32, [batch_size,10], name = "label")#this creates the labels dataset. Thisi s a one-hot vector
 
 w = tf.Variable(tf.random_normal(shape = [784,10], stddev = 0.01), name = "weights")
@@ -30,7 +30,7 @@ with tf.Session() as sess:
     number_batches = int(MNIST.train.num_examples/batch_size)
     for i in range(epochs):
         for j in range(number_batches):
-            batch_xs, batch_ys = MNIST.train.next_batch(100)
+            batch_xs, batch_ys = MNIST.train.next_batch(128)
             sess.run([optimizer,loss], feed_dict={X: batch_xs, Y:batch_ys})
             print("running")
 
