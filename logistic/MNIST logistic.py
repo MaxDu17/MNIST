@@ -4,7 +4,7 @@ import numpy as np
 import time
 
 
-MNIST = input_data.read_data_sets('/tmp/tensorflow/mnist/input_data')
+MNIST = input_data.read_data_sets('/tmp/tensorflow/mnist/input_data', one_hot = True)
 
 learning_rate = 0.01
 batch_size = 128
