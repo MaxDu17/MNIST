@@ -32,7 +32,18 @@ with tf.Session() as sess:
         for j in range(number_batches):
             batch_xs, batch_ys = MNIST.train.next_batch(128)
             sess.run([optimizer,loss], feed_dict={X: batch_xs, Y:batch_ys})
-            print("running")
+            
+
+    number_batches = int(MNIST.test.num_examples/batch_size)
+    total_correct = 0
+    for i in range(number_batches):
+        X_batch, Y_batch = MNIST.test.next_batch(batch_size)
+        logits_batch = sess.run(logits,feed_dict = {X: X_batch, Y:Y_batch})
+        predictions = tf.nn.softmax(logits_batch)
+        correct_predictions = tf.equal(tf.argmax(predictions,1), tf.argmax(Y_batch, 1))#sees if the softmax and the one hot array are the same
+        accuracy = tf.reduce_sum(tf.cast(correct_predictions, tf.float32))
+        total_correct += sess.run(accuracy)
+    print(accuracy)
 
     writer = tf.summary.FileWriter('tmp/MNISTlogistic', sess.graph)
     writer.close()  # you need to close the writer in order to write down the data
