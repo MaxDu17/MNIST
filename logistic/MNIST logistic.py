@@ -32,6 +32,7 @@ with tf.Session() as sess:
         for j in range(number_batches):
             batch_xs, batch_ys = MNIST.train.next_batch(128)
             sess.run([optimizer,loss], feed_dict={X: batch_xs, Y:batch_ys})
+        print("epoch finished")
 
 
     number_batches = int(MNIST.test.num_examples/batch_size)
